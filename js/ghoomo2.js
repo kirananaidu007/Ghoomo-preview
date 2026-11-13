@@ -2066,7 +2066,7 @@ function initIndiaExplorer() {
  const search=document.getElementById('india-state-search');
  search?.addEventListener('input',()=>{const q=search.value.toLowerCase().trim();document.querySelectorAll('.india-state-group').forEach(group=>{let any=false;group.querySelectorAll('[data-state]').forEach(btn=>{const show=btn.dataset.state.toLowerCase().includes(q);btn.hidden=!show;if(show)any=true;});group.hidden=!any;});});
  // Map is progressive enhancement: the state list remains available if boundary data is offline.
- const geoUrls=['https://raw.githubusercontent.com/datameet/maps/master/States/Admin2.geojson','https://raw.githubusercontent.com/iamaanahmad/GeoJson-of-Indian-States/main/indian-states.geojson'];
+ const geoUrls=['assets/india-states.geojson','https://raw.githubusercontent.com/iamaanahmad/GeoJson-of-Indian-States/main/indian-states.geojson'];
  const fetchMapData=async()=>{let lastError;for(const url of geoUrls){try{const response=await fetch(url);if(!response.ok)throw new Error('Map data unavailable');const data=await response.json();if(data&&Array.isArray(data.features)&&data.features.length>=28)return data;}catch(error){lastError=error;}}throw lastError||new Error('Map data unavailable');};
  fetchMapData().then(data=>{
   if(!map.isConnected)return;
