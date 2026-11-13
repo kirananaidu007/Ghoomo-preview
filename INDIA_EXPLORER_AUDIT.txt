@@ -1,0 +1,33 @@
+GHOOMO INDIA EXPLORER FOLLOW-UP AUDIT
+Date: 16 October 2026
+
+CHECKS AND CHANGES
+- Canonical state/UT list contains 36 unique choices (28 states + 8 union territories).
+- Catalogue contains 154 unique destination slugs and 154 unique destination display names.
+- Every destination slug has a dedicated image-page lookup entry.
+- The main package filter dropdown canonicalizes state-name aliases before deduplication, so legacy variants such as "Jammu & Kashmir" and "Jammu and Kashmir" do not produce separate choices.
+- The India Explorer starts with a visible, clickable regional state guide while remote GeoJSON is loading. If boundary data requests fail, the guide remains visible and interactive instead of displaying an unavailable-only blank panel.
+- A successful remote boundary-data load can replace the schematic guide with the SVG boundary map. Map boundaries are a visual guide, not a legal or survey map.
+- Travel-interest filtering uses explicit itinerary tags rather than incidental terms in descriptions. If an itinerary is tagged for more than one interest, it may legitimately appear in each matching category.
+- Explorer itinerary cards now invoke the existing destination-specific image resolver; this call was missing from the explorer route, so cards were retaining generic fallback images.
+- Named thumbnail lookup pages are mapped for the requested destinations, including Andhra Pradesh, Karnataka, Telangana, Puducherry, Morni Hills/Pinjore, Bangaram Island, Sikkim, Kaziranga, Amritsar, Ram Mandir in Ayodhya, Nalanda, Similipal, Darjeeling, Great Rann of Kutch, Ajanta and Ellora, Ganpatipule/Jaigad, Tarkarli/Malvan, Alibaug/Murud, Daman, and Silvassa.
+- The service-worker cache identifier was bumped so updated JS/CSS should not remain hidden behind the previous app cache.
+
+VALIDATION
+- JavaScript syntax check: passed.
+- Catalogue structure check: 154 unique names/slugs, all 154 image mappings present.
+- Canonical state/UT count: 36 unique labels.
+- ZIP integrity check: to be run after archive creation.
+
+LIMITATIONS
+- This build environment could not access the internet to inspect live Wikipedia thumbnails or retrieve/verify live boundary GeoJSON.
+- The thumbnail lookup pages are destination-specific, but the actual images returned by Wikipedia have not been visually verified one by one. Missing/unavailable thumbnail responses retain the curated static fallback.
+- Live boundary map visibility depends on connectivity to the GeoJSON host; the local selectable regional schematic is the fallback when online boundaries cannot load.
+- Prices and itineraries remain illustrative demo data.
+
+
+PHOTO REPAIR ADDENDUM
+- Explicit Commons image files were added for Madhya Pradesh's lead temple card; Ajanta and Ellora; Mumbai/Elephanta; Ganpatipule; Tarkarli/Malvan; Murud-Janjira; Amarnath; Dal Lake; Pahalgam; Leh Palace; Thiksey Monastery; Diskit/Nubra; Pangong Tso; Golden Temple; Anandpur Sahib; Qila Mubarak; Chandigarh Rock Garden; Sukhna Lake; and Pinjore Gardens.
+- Since this runtime could not load image files directly for full visual browser verification, filenames were checked against Wikimedia Commons page/search results but the live render still needs device-side confirmation.
+- Image load errors now fall back to a named GHOOMO destination placeholder, not an unrelated stock image.
+- The offline locator has an embedded schematic silhouette and clickable regional state buttons; detailed boundaries are still enhancement-only and depend on remote GeoJSON being reachable.
